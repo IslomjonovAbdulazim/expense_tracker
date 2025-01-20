@@ -133,7 +133,6 @@ class _RecordPageState extends State<RecordPage> {
                             autocorrect: false,
                             autofocus: true,
                             enableInteractiveSelection: false,
-                            inputFormatters: [],
                             decoration: InputDecoration(
                               counter: SizedBox.shrink(),
                               hintText: "0",
@@ -148,7 +147,6 @@ class _RecordPageState extends State<RecordPage> {
                                 vertical: 20,
                               ),
                             ),
-                            onChanged: (value) {},
                           ),
                         ),
                       ),
@@ -208,7 +206,10 @@ class _RecordPageState extends State<RecordPage> {
                         ),
                       ),
                       iconStyleData: IconStyleData(
-                        icon: Image.asset("assets/arrow-down.png", height: 35),
+                        icon: Image.asset(
+                          "assets/arrow-down.png",
+                          height: 30,
+                        ),
                       ),
                       items: widget.categories.map<DropdownMenuItem<String>>(
                         (str) {

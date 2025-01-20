@@ -55,7 +55,7 @@ Future<void> addNewExpense(ExpenseModel expense) async {
 }
 
 Future<void> saveExpenses(List<ExpenseModel> expenses) async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
   List<String> jsonList =
       expenses.map((note) => json.encode(note.toJson())).toList();
 
@@ -63,7 +63,7 @@ Future<void> saveExpenses(List<ExpenseModel> expenses) async {
 }
 
 Future<List<ExpenseModel>> getExpenses() async {
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
 
   List<String>? jsonList = prefs.getStringList('expenses');
 
