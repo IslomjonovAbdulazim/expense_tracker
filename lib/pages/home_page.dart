@@ -1,4 +1,5 @@
 import 'package:expense_tracker/app/controllers/home_controller.dart';
+import 'package:expense_tracker/app/routes/app_routes.dart';
 import 'package:expense_tracker/domain/entities/expense_entity.dart';
 import 'package:expense_tracker/pages/record_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -48,15 +49,7 @@ class HomePage extends StatelessWidget {
                       child: CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) {
-                              return RecordPage(
-                                isIncome: true,
-                                categories: controller.incomeCategories,
-                              );
-                            }),
-                          );
+                          Get.toNamed(AppRoutes.record, arguments: true);
                           controller.loadAll();
                         },
                         child: Container(
@@ -114,15 +107,7 @@ class HomePage extends StatelessWidget {
                       child: CupertinoButton(
                         padding: EdgeInsets.zero,
                         onPressed: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) {
-                              return RecordPage(
-                                isIncome: false,
-                                categories: controller.expenseCategories,
-                              );
-                            }),
-                          );
+                          Get.toNamed(AppRoutes.record, arguments: false);
                           controller.loadAll();
                         },
                         child: Container(
@@ -194,18 +179,7 @@ class HomePage extends StatelessWidget {
                             return CupertinoButton(
                               padding: EdgeInsets.zero,
                               onPressed: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (_) {
-                                    return RecordPage(
-                                      isIncome: record.isIncome,
-                                      categories: record.isIncome
-                                          ? controller.incomeCategories
-                                          : controller.expenseCategories,
-                                      // expense: record,
-                                    );
-                                  }),
-                                );
+                                Get.toNamed(AppRoutes.record, arguments: record);
                                 controller.loadAll();
                               },
                               child: Container(
@@ -225,13 +199,13 @@ class HomePage extends StatelessWidget {
                                     Container(
                                       padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
-                                        color: record.isIncome
+                                        color: record.type == ExpenseEnum.income
                                             ? Color(0xffCFFAEA)
                                             : Color(0xffefc9cb),
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                       child: Image.asset(
-                                        record.isIncome
+                                        record.type == ExpenseEnum.income
                                             ? "assets/income.png"
                                             : "assets/expense.png",
                                         height: 35,
@@ -244,7 +218,7 @@ class HomePage extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            record.category,
+                                            record.category.name,
                                             style: GoogleFonts.inter(
                                               color: Color(0xff292B2D),
                                               fontSize: 16,
@@ -271,10 +245,11 @@ class HomePage extends StatelessWidget {
                                           CrossAxisAlignment.end,
                                       children: [
                                         Text(
-                                          "${record.isIncome ? "+" : "-"} \$${record.amount}",
+                                          "${record.type == ExpenseEnum.income ? "+" : "-"} \$${record.amount}",
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
-                                            color: record.isIncome
+                                            color: record.type ==
+                                                    ExpenseEnum.income
                                                 ? Color(0xff08a473)
                                                 : Color(0xffFD3C4A),
                                             fontSize: 16,
