@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../../domain/entities/category_entity.dart';
 import '../../../domain/entities/expense_entity.dart';
 
 part 'category_model.freezed.dart';
@@ -8,7 +9,7 @@ part 'category_model.g.dart';
 @freezed
 class CategoryModel with _$CategoryModel {
   const factory CategoryModel({
-    required int id,
+    required int pk,
     required String name,
     required String icon,
     required ExpenseEnum type,
@@ -21,7 +22,7 @@ class CategoryModel with _$CategoryModel {
 extension CategoryModelX on CategoryModel {
   CategoryEntity toEntity() {
     return CategoryEntity(
-      id: id,
+      id: pk,
       name: name,
       icon: icon,
       type: type,

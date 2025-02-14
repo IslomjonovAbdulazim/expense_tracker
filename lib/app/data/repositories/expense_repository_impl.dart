@@ -4,6 +4,7 @@ import 'package:expense_tracker/app/data/models/expense_model.dart';
 import 'package:expense_tracker/app/data/providers/expense_api_client.dart';
 import 'package:expense_tracker/domain/entities/expense_entity.dart';
 import 'package:expense_tracker/domain/repositories/expense_repository.dart';
+import 'package:expense_tracker/main.dart';
 import 'package:expense_tracker/utils/constants/api_constants.dart';
 import 'package:expense_tracker/utils/errors/network_failure.dart';
 
@@ -25,7 +26,8 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
   @override
   Future<Either<NetworkFailure, List<ExpenseEntity>>> allExpenses() async {
     try {
-      final expenses = await apiClient.allExpenses();
+      final t = "Bearer $token";
+      final expenses = await apiClient.allExpenses(t);
       return Right(expenses.map((expense) => expense.toEntity()).toList());
     } on DioException catch (e) {
       return Left(

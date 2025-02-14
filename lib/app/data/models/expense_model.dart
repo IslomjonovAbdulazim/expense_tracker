@@ -9,7 +9,7 @@ part 'expense_model.g.dart';
 @freezed
 class ExpenseModel with _$ExpenseModel {
   const factory ExpenseModel({
-    required int id,
+    required int pk,
     required CategoryModel category,
     required ExpenseEnum type,
     required int amount,
@@ -24,7 +24,7 @@ class ExpenseModel with _$ExpenseModel {
 extension ExpenseModelX on ExpenseModel {
   ExpenseEntity toEntity() {
     return ExpenseEntity(
-      id: id,
+      id: -1,
       category: category.toEntity(),
       type: type,
       amount: amount,

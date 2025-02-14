@@ -1,3 +1,5 @@
+import 'category_entity.dart';
+
 enum ExpenseEnum {
   expense,
   income,
@@ -18,20 +20,6 @@ class ExpenseEntity {
     required this.amount,
     required this.type,
     required this.category,
-  });
-}
-
-class CategoryEntity {
-  final int id;
-  final String name;
-  final String icon;
-  final ExpenseEnum type;
-
-  CategoryEntity({
-    required this.id,
-    required this.name,
-    required this.icon,
-    required this.type,
   });
 }
 

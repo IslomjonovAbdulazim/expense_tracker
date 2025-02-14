@@ -9,7 +9,7 @@ import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
 
 // final faker = Faker();
-
+final token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5NTQ1NDY3LCJpYXQiOjE3Mzk1NDUxNjcsImp0aSI6ImZlNTU1Yzc5ZDNiNDRlMjM4ZjE5NTQxZjQyZmIzZTQ5IiwidXNlcl9pZCI6MX0.rxCeiBIwiNkMqEhEoUz3A1WJeUTQqdoI6gzIhPlA0Jc";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
