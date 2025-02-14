@@ -1,14 +1,13 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:expense_tracker/domain/entities/expense_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../models/expense_model.dart';
-
 class RecordPage extends StatefulWidget {
   final bool isIncome;
   final List<String> categories;
-  final ExpenseModel? expense;
+  final ExpenseEntity? expense;
 
   const RecordPage({
     super.key,
@@ -67,7 +66,7 @@ class _RecordPageState extends State<RecordPage> {
               ? SizedBox.shrink()
               : IconButton(
                   onPressed: () async {
-                    await deleteExpense(widget.expense!);
+                    // await deleteExpense(widget.expense!);
                     Navigator.pop(context);
                   },
                   icon: Icon(
@@ -281,14 +280,15 @@ class _RecordPageState extends State<RecordPage> {
                         String description = descriptionController.text.trim();
                         if (amount != null && selectedCategory != null) {
                           DateTime? oldTime = widget.expense?.time;
-                          ExpenseModel expense = ExpenseModel(
+                          ExpenseEntity expense = ExpenseEntity(
                             category: selectedCategory!,
                             isIncome: widget.isIncome,
                             amount: amount,
                             description: description,
                             time: oldTime ?? DateTime.now(),
+                            id: -1,
                           );
-                          await addNewExpense(expense);
+                          // await addNewExpense(expense);
                           Navigator.pop(context);
                         }
                       },
