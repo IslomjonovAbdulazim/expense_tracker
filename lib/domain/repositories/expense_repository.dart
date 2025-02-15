@@ -5,4 +5,5 @@ import '../entities/expense_entity.dart';
 
 abstract class ExpenseRepository {
   Future<Either<NetworkFailure, List<ExpenseEntity>>> allExpenses();
+  Future<Either<NetworkFailure, ExpenseEntity>> specificExpense(int id);
 }

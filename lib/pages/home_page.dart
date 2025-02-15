@@ -1,7 +1,6 @@
 import 'package:expense_tracker/app/controllers/home_controller.dart';
 import 'package:expense_tracker/app/routes/app_routes.dart';
 import 'package:expense_tracker/domain/entities/expense_entity.dart';
-import 'package:expense_tracker/pages/record_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -179,7 +178,10 @@ class HomePage extends StatelessWidget {
                             return CupertinoButton(
                               padding: EdgeInsets.zero,
                               onPressed: () async {
-                                Get.toNamed(AppRoutes.record, arguments: record);
+                                Get.toNamed(
+                                  AppRoutes.record,
+                                  arguments: record.id,
+                                );
                                 controller.loadAll();
                               },
                               child: Container(
@@ -217,14 +219,24 @@ class HomePage extends StatelessWidget {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            record.category.name,
-                                            style: GoogleFonts.inter(
-                                              color: Color(0xff292B2D),
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            maxLines: 1,
+                                          Row(
+                                            children: [
+                                              Image.network(
+                                                record.category.icon,
+                                                height: 20,
+                                                width: 20,
+                                              ),
+                                              SizedBox(width: 5),
+                                              Text(
+                                                record.category.name,
+                                                style: GoogleFonts.inter(
+                                                  color: Color(0xff292B2D),
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                                maxLines: 1,
+                                              ),
+                                            ],
                                           ),
                                           SizedBox(height: 3),
                                           Text(

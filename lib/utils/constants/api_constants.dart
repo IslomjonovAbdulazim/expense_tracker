@@ -13,8 +13,9 @@ class ApiConstants {
   /// EXPENSES
   static const String createExpense = "/api/v1/auth/expenses/create";
   static const String deleteExpense = "/api/v1/auth/expenses/delete/";
-  static const String allExpenses = "/api/v1/expenses/list/";
-  static const String singleExpense = "/api/v1/auth/expenses/list/";
+  static const String allExpenses = "/api/v1/expenses/";
+  static const String specificExpense = "/api/v1/expenses/{id}/";
+  static const String singleExpense = "/api/v1/auth/expenses/";
   static const String updateExpensePut = "/api/v1/auth/expenses/put/";
   static const String updateExpensePatch = "/api/v1/auth/expenses/put/";
 

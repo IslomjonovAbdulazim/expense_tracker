@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:expense_tracker/app/data/models/expense_model.dart';
-import 'package:flutter/material.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../utils/constants/api_constants.dart';
@@ -14,5 +13,11 @@ abstract class ExpenseApiClient {
   @GET(ApiConstants.allExpenses)
   Future<List<ExpenseModel>> allExpenses(
     @Header("Authorization") String token,
+  );
+
+  @GET(ApiConstants.specificExpense)
+  Future<ExpenseModel> specificExpense(
+    @Header("Authorization") String token,
+    @Path("id") int id,
   );
 }

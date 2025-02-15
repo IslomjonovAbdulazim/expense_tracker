@@ -14,6 +14,7 @@ class ExpenseModel with _$ExpenseModel {
     required ExpenseEnum type,
     required int amount,
     required String description,
+    @JsonKey(name: "created_at")
     required DateTime time,
   }) = _ExpenseModel;
 

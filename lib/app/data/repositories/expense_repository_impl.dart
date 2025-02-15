@@ -38,4 +38,21 @@ class ExpenseRepositoryImpl extends ExpenseRepository {
       );
     }
   }
+
+
+  @override
+  Future<Either<NetworkFailure, ExpenseEntity>> specificExpense(int id) async {
+    try {
+      final t = "Bearer $token";
+      final expense = await apiClient.specificExpense(t, id);
+      return Right(expense.toEntity());
+    } on DioException catch (e) {
+      return Left(
+        NetworkFailure(
+          message: e.response?.statusMessage,
+          statusCode: e.response?.statusCode,
+        ),
+      );
+    }
+  }
 }

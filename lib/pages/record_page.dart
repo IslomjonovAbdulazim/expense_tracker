@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:expense_tracker/app/controllers/home_controller.dart';
 import 'package:expense_tracker/app/controllers/record_controller.dart';
+import 'package:expense_tracker/domain/entities/expense_entity.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,11 +16,11 @@ class RecordPage extends StatelessWidget {
     return Obx(
       () => Scaffold(
         backgroundColor:
-            controller.isIncome.value ? Color(0xff00a86b) : Color(0xffFD3C4A),
+            controller.expense.value.type == ExpenseEnum.income ? Color(0xff00a86b) : Color(0xffFD3C4A),
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           backgroundColor:
-          controller.isIncome.value ? Color(0xff00a86b) : Color(0xffFD3C4A),
+          controller.expense.value.type == ExpenseEnum.income ? Color(0xff00a86b) : Color(0xffFD3C4A),
           leadingWidth: 80,
           leading: IconButton(
             onPressed: () {
@@ -30,7 +31,7 @@ class RecordPage extends StatelessWidget {
             ),
           ),
           title: Text(
-            controller.isIncome.value ? "Income" : "Expense",
+            controller.expense.value.type == ExpenseEnum.income ? "Income" : "Expense",
             style: GoogleFonts.inter(
               color: Color(0xffFFFFFF),
               fontWeight: FontWeight.w600,
@@ -89,7 +90,7 @@ class RecordPage extends StatelessWidget {
                           child: SizedBox(
                             height: 70,
                             child: TextField(
-                              controller: controller.numberController,
+                              controller: controller.numberController.value,
                               focusNode: controller.numberFocus.value,
                               onTapOutside: (_) {
                                 controller.unFocus();
@@ -201,7 +202,7 @@ class RecordPage extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       TextField(
-                        controller: controller.descriptionController,
+                        controller: controller.descriptionController.value,
                         focusNode: controller.descriptionFocus.value,
                         maxLength: 200,
                         maxLines: 4,
@@ -248,9 +249,9 @@ class RecordPage extends StatelessWidget {
                         ),
                         onPressed: () async {
                           int? amount =
-                              int.tryParse(controller.numberController.text.trim());
+                              int.tryParse(controller.numberController.value.text.trim());
                           String description =
-                              controller.descriptionController.text.trim();
+                              controller.descriptionController.value.text.trim();
                           if (amount != null && controller.selectedCategory != null) {
                             // DateTime? oldTime = widget.expense?.time;
                             // ExpenseEntity expense = ExpenseEntity(
