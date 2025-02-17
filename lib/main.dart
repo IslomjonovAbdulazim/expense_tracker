@@ -8,7 +8,6 @@ import 'app/bindings/initial_binding.dart';
 import 'app/routes/app_pages.dart';
 import 'app/routes/app_routes.dart';
 
-
 // final faker = Faker();
 final token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM5NTQ2ODI0LCJpYXQiOjE3Mzk1NDY1MjQsImp0aSI6IjQyZDkzNGVhNmJkNDQxNmI5ZGY1M2I3NmU0M2MyZmQ2IiwidXNlcl9pZCI6MX0.PikfUjgZhV_Q8XXAJUqR5TgQityPMGJeL7GgqdmpHRE";
 void main() async {
